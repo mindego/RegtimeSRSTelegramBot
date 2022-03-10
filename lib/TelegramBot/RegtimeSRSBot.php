@@ -247,8 +247,10 @@ class RegtimeSRSBot {
 	}
     
 	$credentialsOut=array("username"=>$credentials[0],"password"=>$credentials[1]);
+	$filename=$this->getChatDataFilename($chatId);
+	if (!file_exists(dirname($filename))) mkdir(dirname($filename));
 	file_put_contents(
-	    $this->getChatDataFilename($chatId),
+	    $filename,
 	    json_encode($credentialsOut,JSON_PRETTY_PRINT)
 	);
 	
@@ -274,9 +276,5 @@ class RegtimeSRSBot {
 	return true;
     }
     
-    public function genResponseText() {
-    }
-    
-
 }
 ?>
